@@ -1,0 +1,67 @@
+/* Container */
+.container {
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+
+  &.padded {
+    padding: var(--site-padding);
+  }
+
+  &.padded-x {
+    padding-inline: var(--site-padding);
+  }
+
+  &.padded-y {
+    padding-block: var(--site-padding);
+  }
+}
+
+.container-sm {
+  --container-max-width: 900px;
+}
+
+.navbar-safe-area {
+  padding-block-start: var(--navbar-safe-area) !important;
+}
+
+.gap-padding {
+  gap: var(--site-padding);
+}
+
+.p-site {
+  padding: var(--site-padding);
+}
+
+.top-navbar {
+  top: var(--navbar-safe-area);
+}
+
+.top-navbar-plus {
+  top: calc(var(--navbar-safe-area) + 2rem);
+}
+
+/* Font sizes */
+$text-sizes: (
+  'sm': var(--text-sm),
+  'base': var(--text-base),
+  'md': var(--text-md),
+  'lg': var(--text-lg),
+  'xl': var(--text-xl),
+  '2xl': var(--text-2xl),
+);
+
+@each $size, $var in $text-sizes {
+  .text-#{$size} {
+    font-size: #{$var};
+  }
+}
+
+/* Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
