@@ -17,6 +17,7 @@ useHead({
 <template>
   <div class="font-sans">
     <NuxtLoadingIndicator :color="false" />
+    <SiteLoadScreen />
     <SiteNav />
     <main class="page">
       <slot />

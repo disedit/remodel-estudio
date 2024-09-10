@@ -153,7 +153,7 @@ function onLeaveCancelled() {
 
 <style lang="scss" scoped>
 .nav {
-  position: fixed;
+  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;
