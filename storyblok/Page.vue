@@ -5,5 +5,8 @@ const props = defineProps({ blok: Object })
 <template>
   <div v-editable="blok" class="page">
     Page
+    <div v-if="blok.sticky_title" class="sticky-title">
+      {{ blok.sticky_title }}
+    </div>
   </div>
 </template>

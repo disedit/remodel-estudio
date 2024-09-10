@@ -71,7 +71,10 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Lato: [300, 400, 700],
+      Lato: {
+        wght: [300, 400, 700],
+        ital: [400, 700]
+      }
     }
   }
 })
