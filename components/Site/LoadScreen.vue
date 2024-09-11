@@ -47,6 +47,7 @@ onMounted(() => {
   overflow: clip;
   position: relative;
   height: 100vh;
+  z-index: 950;
 
   &-picture {
     position: absolute;

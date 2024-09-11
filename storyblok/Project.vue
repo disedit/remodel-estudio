@@ -4,15 +4,19 @@ const props = defineProps({ blok: Object })
 
 <template>
   <div v-editable="blok" class="page">
-    <h1 v-if="blok.sticky_title" class="page-title">
-      {{ blok.sticky_title }}
+    <h1 class="page-title">
+      {{ $t('projects.title') }}
     </h1>
 
     <StoryblokComponent
-      v-for="blok in blok.body"
+      v-for="blok in blok.blocks"
       :key="blok._uid"
       :blok="blok"
     />
+    <pre>{{ blok }}</pre>
+    <div class="container padded">
+      Details and next
+    </div>
   </div>
 </template>
 

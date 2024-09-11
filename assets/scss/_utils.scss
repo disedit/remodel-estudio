@@ -4,15 +4,15 @@
   margin-inline: auto;
 
   &.padded {
-    padding: var(--site-padding);
+    padding: var(--site-padding-y) var(--site-padding-x);
   }
 
   &.padded-x {
-    padding-inline: var(--site-padding);
+    padding-inline: var(--site-padding-x);
   }
 
   &.padded-y {
-    padding-block: var(--site-padding);
+    padding-block: var(--site-padding-y);
   }
 }
 
@@ -25,11 +25,11 @@
 }
 
 .gap-padding {
-  gap: var(--site-padding);
+  gap: var(--site-padding-x);
 }
 
 .p-site {
-  padding: var(--site-padding);
+  padding: var(--site-padding-y) var(--site-padding-x);
 }
 
 .top-navbar {

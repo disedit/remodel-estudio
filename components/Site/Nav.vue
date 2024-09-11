@@ -84,86 +84,93 @@ function onLeaveCancelled() {
 </script>
 
 <template>
-  <nav :class="['nav', { open: menuOpen, scrolled }]" ref="nav">
-    <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
-      <SiteLogo />
-    </NuxtLink>
+  <div class="nav-wrapper" ref="nav">
+    <nav :class="['nav', { open: menuOpen, scrolled }]">
+      <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
+        <SiteLogo />
+      </NuxtLink>
 
-    <button @click="toggleMenu" class="nav-toggle" :aria-label="$t('assist.toggle_menu')">
-      <IconPlus />
-    </button>
-  </nav>
-  <Transition
-    @before-enter="beforeEnter"
-    @enter="onEnter"
-    @enter-cancelled="onEnterCancelled"
-    @leave="onLeave"
-    @leave-cancelled="onLeaveCancelled"
-  >
-    <div class="menu" v-if="menuOpen">
-      <div class="menu-pictures">
-        <div
-          v-for="item in settings.data.story.content.menu"
-          :key="item._uid"
-          class="menu-picture"
-        >
-          <Transition name="fade">
-            <NuxtImg
-              v-if="item.picture.filename && hovering === item._uid"
-              :src="item.picture.filename"
-            />
-          </Transition>
-        </div>
-      </div>
-      <div class="menu-content">
-        <ul class="menu-items" :aria-label="$t('assist.menu')">
-          <li
+      <button @click="toggleMenu" class="nav-toggle" :aria-label="$t('assist.toggle_menu')">
+        <IconPlus />
+      </button>
+    </nav>
+    <Transition
+      @before-enter="beforeEnter"
+      @enter="onEnter"
+      @enter-cancelled="onEnterCancelled"
+      @leave="onLeave"
+      @leave-cancelled="onLeaveCancelled"
+    >
+      <div class="menu" v-if="menuOpen">
+        <div class="menu-pictures">
+          <div
             v-for="item in settings.data.story.content.menu"
             :key="item._uid"
-            class="menu-item"
+            class="menu-picture"
           >
-            <NuxtLink
-              :to="internalLink(item.link?.story?.full_slug)"
-              @click="hideMenu"
-              @mouseenter="hovering = item._uid"
-              @mouseleave="hovering = null"
+            <Transition name="fade">
+              <NuxtImg
+                v-if="item.picture.filename && hovering === item._uid"
+                :src="item.picture.filename"
+              />
+            </Transition>
+          </div>
+        </div>
+        <div class="menu-content">
+          <ul class="menu-items" :aria-label="$t('assist.menu')">
+            <li
+              v-for="item in settings.data.story.content.menu"
+              :key="item._uid"
+              class="menu-item"
             >
-              <div class="animate">
-                {{ item.label }}
-              </div>
-            </NuxtLink>
-          </li>
-        </ul>
-        <ul class="menu-languages" aria-label="Idioma / Language">
-          <li v-for="lang in locales" :key="lang.code">
-            <NuxtLink
-              :to="switchLocalePath(lang.code)"
-              :class="{ 'active': locale === lang.code }"
-              @click="hideMenu"
-              :title="lang.name"
-            >
-              {{ lang.code }}
-            </NuxtLink>
-          </li>
-        </ul>
+              <NuxtLink
+                :to="internalLink(item.link?.story?.full_slug)"
+                @click="hideMenu"
+                @mouseenter="hovering = item._uid"
+                @mouseleave="hovering = null"
+              >
+                <div class="animate">
+                  {{ item.label }}
+                </div>
+              </NuxtLink>
+            </li>
+          </ul>
+          <ul class="menu-languages" aria-label="Idioma / Language">
+            <li v-for="lang in locales" :key="lang.code">
+              <NuxtLink
+                :to="switchLocalePath(lang.code)"
+                @click="hideMenu"
+                :class="{ 'active': locale === lang.code }"
+                :title="lang.name"
+              >
+                {{ lang.code }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .nav {
-  position: sticky;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: var(--navbar-safe-area);
   padding: var(--site-padding-y) var(--site-padding-x);
-  z-index: 1100;
-  top: 0;
-  left: 0;
-  right: 0;
   transition: background-color .5s ease;
+  z-index: 1200;
+
+  &-wrapper {
+    position: sticky;
+    z-index: 1100;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 
   &-logo svg {
     height: 2rem;
