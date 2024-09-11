@@ -33,7 +33,7 @@ onMounted(() => {
           class="loading-screen-picture"
         >
           <NuxtImg
-            v-show="currentPicture === i"
+            v-show="currentPicture > i"
             :src="picture.filename"
           />
         </div>
