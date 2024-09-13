@@ -32,6 +32,10 @@
   padding: var(--site-padding-y) var(--site-padding-x);
 }
 
+.padding-x {
+  padding-inline: var(--site-padding-x);
+}
+
 .top-navbar {
   top: var(--navbar-safe-area);
 }

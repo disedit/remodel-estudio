@@ -5,6 +5,6 @@ export default {
     toggle_menu: 'Toggle menu'
   },
   projects: {
-    title: 'Projects'
+    next: 'Next project'
   }
 }

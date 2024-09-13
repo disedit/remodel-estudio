@@ -62,9 +62,14 @@ function setCategory(category) {
       <ul class="project-gallery">
         <li
           v-for="project in filteredProjects"
-          :key="project.uuid">
+          :key="project.uuid"
+          class="project">
           <NuxtLink :to="internalLink(project.full_slug)">
-            {{ project.content.title }}
+            <NuxtImg :src="project.content.thumbnail.filename" :alt="project.content.thumbnail.alt" />
+            <div class="project-overlay">
+              <h2>{{ project.content.title }}</h2>
+              <UtilsRichText class="project-description" :content="project.content.description" />
+            </div>
           </NuxtLink>
         </li>
       </ul>
@@ -75,13 +80,66 @@ function setCategory(category) {
 <style lang="scss" scoped>
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacer-4);
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: var(--spacer-5);
+}
+
+.project {
+  position: relative;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &-overlay {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: .25s ease;
+    padding: 15%;
+
+    h2 {
+      color: var(--white);
+      font-size: var(--text-lg);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .project-description {
+      font-size: var(--text-sm);
+      color: var(--white);
+      margin-top: var(--spacer-4);
+    }
+  }
+
+  &:hover .project-overlay {
+    opacity: 1;
+  }
 }
 
 .categories {
-  .active {
-    font-weight: bold;
+  font-size: var(--text-xl);
+  display: flex;
+  column-gap: 1em;
+  justify-content: center;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-block: var(--spacer-10);
+  flex-wrap: wrap;
+
+  a {
+    color: var(--black);
+
+    &.active {
+      font-style: italic;
+      color: var(--primary);
+    }
   }
 }
 </style>
