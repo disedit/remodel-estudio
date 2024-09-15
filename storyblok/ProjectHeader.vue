@@ -39,6 +39,7 @@ const showDescription = ref(false)
 
   &-description {
     font-size: var(--text-md);
+    font-weight: 300;
 
     &:deep(p) {
       margin-bottom: 1em;

@@ -19,7 +19,8 @@
     "include-media": "^2.0.0",
     "nuxt": "^3.13.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue3-carousel": "^0.3.4"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "^8.5.2",
