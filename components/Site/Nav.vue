@@ -86,13 +86,15 @@ function onLeaveCancelled() {
 <template>
   <div class="nav-wrapper" ref="nav">
     <nav :class="['nav', { open: menuOpen, scrolled }]">
-      <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
-        <SiteLogo />
-      </NuxtLink>
+      <div class="container nav-container">
+        <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
+          <SiteLogo />
+        </NuxtLink>
 
-      <button @click="toggleMenu" class="nav-toggle" :aria-label="$t('assist.toggle_menu')">
-        <IconPlus />
-      </button>
+        <button @click="toggleMenu" class="nav-toggle" :aria-label="$t('assist.toggle_menu')">
+          <IconPlus />
+        </button>
+      </div>
     </nav>
     <Transition
       @before-enter="beforeEnter"
@@ -102,51 +104,53 @@ function onLeaveCancelled() {
       @leave-cancelled="onLeaveCancelled"
     >
       <div class="menu" v-if="menuOpen">
-        <div class="menu-pictures">
-          <div
-            v-for="item in settings.data.story.content.menu"
-            :key="item._uid"
-            class="menu-picture"
-          >
-            <Transition name="fade">
-              <NuxtImg
-                v-if="item.picture.filename && hovering === item._uid"
-                :src="item.picture.filename"
-              />
-            </Transition>
-          </div>
-        </div>
-        <div class="menu-content">
-          <ul class="menu-items" :aria-label="$t('assist.menu')">
-            <li
+        <div class="container padded">
+          <div class="menu-pictures">
+            <div
               v-for="item in settings.data.story.content.menu"
               :key="item._uid"
-              class="menu-item"
+              class="menu-picture"
             >
-              <NuxtLink
-                :to="internalLink(item.link?.story?.full_slug)"
-                @click="hideMenu"
-                @mouseenter="hovering = item._uid"
-                @mouseleave="hovering = null"
+              <Transition name="fade">
+                <NuxtImg
+                  v-if="item.picture.filename && hovering === item._uid"
+                  :src="item.picture.filename"
+                />
+              </Transition>
+            </div>
+          </div>
+          <div class="menu-content">
+            <ul class="menu-items" :aria-label="$t('assist.menu')">
+              <li
+                v-for="item in settings.data.story.content.menu"
+                :key="item._uid"
+                class="menu-item"
               >
-                <div class="animate">
-                  {{ item.label }}
-                </div>
-              </NuxtLink>
-            </li>
-          </ul>
-          <ul class="menu-languages" aria-label="Idioma / Language">
-            <li v-for="lang in locales" :key="lang.code">
-              <NuxtLink
-                :to="switchLocalePath(lang.code)"
-                @click="hideMenu"
-                :class="{ 'active': locale === lang.code }"
-                :title="lang.name"
-              >
-                {{ lang.code }}
-              </NuxtLink>
-            </li>
-          </ul>
+                <NuxtLink
+                  :to="internalLink(item.link?.story?.full_slug)"
+                  @click="hideMenu"
+                  @mouseenter="hovering = item._uid"
+                  @mouseleave="hovering = null"
+                >
+                  <div class="animate">
+                    {{ item.label }}
+                  </div>
+                </NuxtLink>
+              </li>
+            </ul>
+            <ul class="menu-languages" aria-label="Idioma / Language">
+              <li v-for="lang in locales" :key="lang.code">
+                <NuxtLink
+                  :to="switchLocalePath(lang.code)"
+                  @click="hideMenu"
+                  :class="{ 'active': locale === lang.code }"
+                  :title="lang.name"
+                >
+                  {{ lang.code }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </Transition>
@@ -156,13 +160,16 @@ function onLeaveCancelled() {
 <style lang="scss" scoped>
 .nav {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--navbar-safe-area);
-  padding: var(--site-padding-y) var(--site-padding-x);
   transition: background-color .5s ease;
   z-index: 1200;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--navbar-safe-area);
+    padding: var(--site-padding-y) var(--site-padding-x);
+  }
 
   &-wrapper {
     position: sticky;
@@ -178,6 +185,7 @@ function onLeaveCancelled() {
 
   &-toggle {
     padding: 1rem;
+    margin-inline-end: -1rem;
     
     svg {
       height: 2rem;
@@ -195,11 +203,15 @@ function onLeaveCancelled() {
   inset: 0;
   background: var(--rose-light);
   z-index: 1000;
-  padding: var(--site-padding-x);
-  padding-block-start: var(--navbar-safe-area);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: ". pictures content";
+  display: flex;
+
+  .container {
+    padding-block-start: var(--navbar-safe-area);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: ". pictures content";
+    height: 100%;
+  }
 
   &-pictures {
     grid-area: pictures;

@@ -3,7 +3,16 @@ defineProps({ blok: Object })
 </script>
 
 <template>
-  <section v-editable="blok" :class="['centered-picture', { 'full-height': blok.full_height }]">
+  <section v-editable="blok"
+    :class="[
+      'centered-picture',
+      {
+        'full-height': blok.full_height,
+        'has-width': blok.width && !blok.full_height
+      }
+    ]"
+    :style="{ '--width': blok.width }"
+  >
     <div class="container padded">
       <UtilsMedia :media="blok.media" class="centered-picture-media" />
     </div>
@@ -32,6 +41,12 @@ defineProps({ blok: Object })
 
     .centered-picture-media {
       height: 100%;
+    }
+  }
+
+  &.has-width {
+    .centered-picture-media {
+      width: var(--width);
     }
   }
 }

@@ -80,7 +80,7 @@ function setCategory(category) {
 <style lang="scss" scoped>
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--col-width, 20vw), 1fr));
   gap: var(--spacer-5);
 }
 
@@ -140,6 +140,16 @@ function setCategory(category) {
       font-style: italic;
       color: var(--primary);
     }
+  }
+}
+
+@include media('<xl') {
+  .project-gallery {
+    --col-width: 300px;
+  }
+
+  .categories {
+    font-size: var(--text-lg);
   }
 }
 </style>

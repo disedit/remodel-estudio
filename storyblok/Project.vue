@@ -40,7 +40,7 @@ const nextLink = computed(() => {
       :key="blok._uid"
       :blok="blok"
     />
-    <div class="p-site grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+    <div class="container padded grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
       <div class="project-details">
         <UtilsRichText :content="blok.details" />
       </div>
