@@ -76,5 +76,14 @@ export default defineNuxtConfig({
         ital: [400, 700]
       }
     }
+  },
+
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetch: true,
+        prefetchOn: { visibility: false, interaction: true }
+      }
+    }
   }
 })

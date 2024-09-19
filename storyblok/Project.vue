@@ -89,6 +89,6 @@ const nextLink = computed(() => {
   margin-inline-start: auto;
   text-align: right;
   font-size: var(--text-base);
-  line-height: 1.5;
+  line-height: 1.25;
 }
 </style>

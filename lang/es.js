@@ -6,5 +6,10 @@ export default {
   },
   projects: {
     next: 'Siguiente proyecto'
+  },
+  comparison: {
+    before: 'Antes',
+    and: 'y',
+    after: 'después'
   }
 }

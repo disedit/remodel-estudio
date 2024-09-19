@@ -147,7 +147,6 @@ function scrollDown () {
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  border: 1px var(--black) solid;
   color: var(--black);
 
   &:hover {

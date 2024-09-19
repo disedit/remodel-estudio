@@ -65,7 +65,11 @@ function setCategory(category) {
           :key="project.uuid"
           class="project">
           <NuxtLink :to="internalLink(project.full_slug)">
-            <NuxtImg :src="project.content.thumbnail.filename" :alt="project.content.thumbnail.alt" />
+            <NuxtImg
+              :src="project.content.thumbnail.filename"
+              :alt="project.content.thumbnail.alt"
+              sizes="50vw md:500px"
+            />
             <div class="project-overlay">
               <h2>{{ project.content.title }}</h2>
               <UtilsRichText class="project-description" :content="project.content.description" />
@@ -124,7 +128,7 @@ function setCategory(category) {
 }
 
 .categories {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   display: flex;
   column-gap: 1em;
   justify-content: center;
@@ -149,7 +153,7 @@ function setCategory(category) {
   }
 
   .categories {
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
   }
 }
 </style>

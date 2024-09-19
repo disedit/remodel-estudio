@@ -35,6 +35,8 @@ onMounted(() => {
           <NuxtImg
             v-show="currentPicture > i"
             :src="picture.filename"
+            preload
+            sizes="100vw md:1500px"
           />
         </div>
       </div>

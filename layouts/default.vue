@@ -28,8 +28,8 @@ useHead({
 
 <style lang="scss">
 .page {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: calc(100vh - var(--navbar-safe-area));
+  min-height: calc(100svh - var(--navbar-safe-area));
 }
 
 .nuxt-loading-indicator {

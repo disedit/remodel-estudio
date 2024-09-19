@@ -29,15 +29,15 @@ const showingAfter = ref(false)
           :aria-controls="`before-after-${blok._uid}`"
           :aria-pressed="showingAfter ? 'false' : 'true'"
         >
-          Antes
+          {{ $t('comparison.before') }}
         </button>
-        and
+        {{ $t('comparison.and') }}
         <button
           @click="showingAfter = true"
           :aria-controls="`before-after-${blok._uid}`"
           :aria-pressed="showingAfter ? 'true' : 'false'"
         >
-          after
+          {{ $t('comparison.after') }}
         </button>
       </div>
     </div>
@@ -67,15 +67,21 @@ const showingAfter = ref(false)
   }
 
   &-controls {
+    font-size: var(--text-md);
+    font-weight: 300;
+
     button {
-      font-weight: normal;
+      font-weight: 300;
 
       &:hover {
         text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: .1em;
       }
 
       &[aria-pressed='true'] {
         font-weight: bold;
+        text-decoration-thickness: 2px;
       }
     }
   }
