@@ -64,6 +64,7 @@ function scrollDown () {
             <NuxtImg
               :src="picture.filename"
               :alt="picture.alt"
+              :width="600"
               class="project-gallery-picture"
             />
           </a>

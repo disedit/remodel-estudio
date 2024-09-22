@@ -56,8 +56,10 @@ const settings = useState('settings')
 
 @include media('<sm') {
   .footer {
-    grid-template-columns: 1fr;
-    gap: var(--site-padding-x);
+    .container {
+      grid-template-columns: 1fr;
+      gap: var(--site-padding-x);
+    }
 
     &-address {
       text-align: left;

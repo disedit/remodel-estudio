@@ -33,4 +33,12 @@ const props = defineProps({ blok: Object })
     color: var(--gray-700);
   }
 }
+
+@include media('<sm') { 
+  .page {
+    &-title {
+      display: none;
+    }
+  }
+}
 </style>

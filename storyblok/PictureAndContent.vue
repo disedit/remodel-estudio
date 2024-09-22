@@ -70,6 +70,21 @@ defineProps({ blok: Object })
     }
   }
 }
+
+@include media('<md') {
+  .picture-and-content {
+    .container {
+      grid-template-columns: 1fr;
+      grid-template-areas: "picture" "content";
+    }
+
+    &.inverted {
+      .container {
+        grid-template-areas: "picture" "content";
+      }
+    }
+  }
+}
 </style>
 
 <style lang="scss">

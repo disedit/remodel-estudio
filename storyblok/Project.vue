@@ -91,4 +91,12 @@ const nextLink = computed(() => {
   font-size: var(--text-base);
   line-height: 1.25;
 }
+
+@include media('<sm') { 
+  .page {
+    &-title {
+      display: none;
+    }
+  }
+}
 </style>

@@ -20,7 +20,7 @@ const showDescription = ref(false)
         </Transition>
       </div>
       <div class="col">
-        <UtilsMedia :media="blok.media" class="project-header-picture" />
+        <UtilsMedia :media="blok.media" :width="600" class="project-header-picture" />
       </div>
     </div>
   </section>
