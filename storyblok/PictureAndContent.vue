@@ -81,6 +81,7 @@ defineProps({ blok: Object })
     h2, h3 {
       color: var(--primary);
       font-weight: 700;
+      line-height: 1.25;
     }
 
     h2 {
