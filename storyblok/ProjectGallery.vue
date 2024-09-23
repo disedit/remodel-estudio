@@ -99,6 +99,8 @@ function scrollDown () {
 
 <style lang="scss" scoped>
 .project-gallery {
+  margin: var(--spacer-10) 0;
+
   &-picture {
     width: 100%;
     aspect-ratio: 1;
@@ -132,6 +134,8 @@ function scrollDown () {
 
       img {
         width: 100%;
+        height: calc(100dvh - (var(--spacer-4) * 2));
+        object-fit: contain;
       }
     }
   }

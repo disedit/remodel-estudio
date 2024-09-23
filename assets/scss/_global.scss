@@ -69,7 +69,9 @@ button {
   }
 
   .picture {
+    position: relative;
     display: flex;
+    z-index: 1;
 
     &-asset {
       display: block;
@@ -84,6 +86,8 @@ button {
     font-size: var(--text-lg);
     color: var(--gray-300);
     font-weight: 300;
+    position: relative;
+    z-index: 2;
 
     strong,
     b {
@@ -97,6 +101,9 @@ button {
     line-height: 1.1;
     text-wrap: balance;
     text-align: center;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
   }
 
   p {
