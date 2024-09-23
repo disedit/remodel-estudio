@@ -5,7 +5,7 @@ defineProps({ blok: Object })
 <template>
   <section v-editable="blok" class="home-block">
     <div class="picture picture-1">
-      <UtilsMedia :media="blok.picture_1" class="picture-asset" />
+      <UtilsMedia :media="blok.picture_1" :width="800" class="picture-asset" />
     </div>
     <div class="caption caption-1">
       <UtilsRichText :content="blok.caption_1" />
@@ -14,7 +14,7 @@ defineProps({ blok: Object })
       <UtilsRichText :content="blok.text_1" />
     </div>
     <div class="picture picture-2">
-      <UtilsMedia :media="blok.picture_2" class="picture-asset" />
+      <UtilsMedia :media="blok.picture_2" :width="800" class="picture-asset" />
     </div>
     <div class="caption caption-2">
       <UtilsRichText :content="blok.caption_2" />
@@ -23,13 +23,13 @@ defineProps({ blok: Object })
       <UtilsRichText :content="blok.text_2" />
     </div>
     <div class="picture picture-3">
-      <UtilsMedia :media="blok.picture_3" class="picture-asset" />
+      <UtilsMedia :media="blok.picture_3" :width="800" class="picture-asset" />
     </div>
     <div class="caption caption-3">
       <UtilsRichText :content="blok.caption_3" />
     </div>
     <div class="picture picture-4">
-      <UtilsMedia :media="blok.picture_4" class="picture-asset" />
+      <UtilsMedia :media="blok.picture_4" :width="800" class="picture-asset" />
     </div>
     <div class="caption caption-4">
       <UtilsRichText :content="blok.caption_4" />

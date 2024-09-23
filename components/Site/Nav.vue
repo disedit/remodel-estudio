@@ -115,7 +115,7 @@ function onLeaveCancelled() {
                 <NuxtImg
                   v-if="item.picture.filename && hovering === item._uid"
                   :src="item.picture.filename"
-                  sizes="50vw md:750px"
+                  :width="500"
                 />
               </Transition>
             </div>

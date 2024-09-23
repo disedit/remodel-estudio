@@ -20,7 +20,7 @@ defineProps({ blok: Object })
   >
     <div class="container padded">
       <div class="picture">
-        <UtilsMedia :media="blok.picture" class="picture-asset" />
+        <UtilsMedia :media="blok.picture" :width="800" class="picture-asset" />
       </div>
       <UtilsRichText :content="blok.content" class="content" />
     </div>
