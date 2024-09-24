@@ -7,8 +7,19 @@ const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const { internalLink } = useLinks()
 
-const { y } = useWindowScroll()
-const scrolled = computed(() => y.value > 0)
+onMounted(() => {
+  handleScroll()
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const scrolled = ref(false)
+function handleScroll () {
+  scrolled.value = (window.scrollY > 0)
+}
 
 let trap
 const nav = ref()
