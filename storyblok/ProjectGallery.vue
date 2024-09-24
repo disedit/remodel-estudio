@@ -64,7 +64,7 @@ function scrollDown () {
             <NuxtImg
               :src="picture.filename"
               :alt="picture.alt"
-              :width="600"
+              :width="500"
               class="project-gallery-picture"
             />
           </a>
@@ -89,7 +89,7 @@ function scrollDown () {
             :id="`picture-${index}`"
             class="project-gallery-dialog-picture"
           >
-            <NuxtImg :src="picture.filename" :alt="picture.alt" />
+            <NuxtImg :src="picture.filename" :width="800" :alt="picture.alt" />
           </div>
         </div>
       </dialog>

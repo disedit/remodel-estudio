@@ -11,12 +11,40 @@ const isHoverVideo = props.hover && props.hover.filename && props.hover?.filenam
 
 <template>
   <div class="hoverable-media relative">
-    <video v-if="isVideo" :src="media.filename" class="media" />
-    <NuxtImg v-else :src="media.filename" :width="width" :alt="media.alt" class="media" />
+    <video
+      v-if="isVideo"
+      :src="media.filename"
+      class="media"
+      playsinline
+      muted
+      autoplay
+      loop
+    />
+    <NuxtImg
+      v-else
+      :src="media.filename"
+      :width="width"
+      :alt="media.alt"
+      class="media"
+    />
     
     <div class="hoverable">
-      <video v-if="isHoverVideo" :src="hover.filename" class="media" />
-      <NuxtImg v-else-if="hover && hover.filename" :src="hover.filename" :width="width" :alt="hover.alt" class="media" />
+      <video
+        v-if="isHoverVideo"
+        :src="hover.filename"
+        class="media"
+        playsinline
+        muted
+        autoplay
+        loop
+      />
+      <NuxtImg
+        v-else-if="hover && hover.filename"
+        :src="hover.filename"
+        :width="width"
+        :alt="hover.alt"
+        class="media"
+      />
     </div>
   </div>
 </template>
