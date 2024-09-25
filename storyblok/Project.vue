@@ -35,11 +35,14 @@ const nextLink = computed(() => {
       {{ blok.title }}
     </h1>
 
-    <StoryblokComponent
-      v-for="blok in blok.blocks"
-      :key="blok._uid"
-      :blok="blok"
-    />
+    <div class="flex flex-col gap-20">
+      <StoryblokComponent
+        v-for="blok in blok.blocks"
+        :key="blok._uid"
+        :blok="blok"
+      />
+    </div>
+
     <div class="container padded grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
       <div class="project-details">
         <UtilsRichText :content="blok.details" />

@@ -51,8 +51,8 @@ defineProps({ blok: Object })
 
   &__picture {
     display: block;
-    height: calc(100vh - var(--navbar-safe-area));
-    height: calc(100svh - var(--navbar-safe-area));
+    height: 100vh;
+    height: 100svh;
     width: 100%;
     object-fit: cover;
   }

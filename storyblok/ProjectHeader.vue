@@ -10,7 +10,7 @@ const showDescription = ref(false)
         <h1 class="project-header-title mb-6">
           <UtilsRichText :content="blok.title" />
         </h1>
-        <button class="toggle-description" @click="showDescription = true" v-if="!showDescription">
+        <button :class="['toggle-description', { minus: showDescription }]" @click="showDescription = !showDescription">
           <IconPlus />
         </button>
         <Transition name="fade">

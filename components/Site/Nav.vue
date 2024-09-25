@@ -7,19 +7,19 @@ const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const { internalLink } = useLinks()
 
-onMounted(() => {
-  handleScroll()
-  window.addEventListener('scroll', handleScroll)
-})
+/* Hide/Show nav bar on scorll */
+const { y } = useWindowScroll()
+const showNavbar = ref(true)
+const lastScrollPosition = ref(0)
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+watch(y, (currentScrollPosition) => {
+  if (currentScrollPosition < 0 || Math.abs(currentScrollPosition - lastScrollPosition.value) < 60) {
+    return
+  }
+  console.log(currentScrollPosition)
+  showNavbar.value = currentScrollPosition < lastScrollPosition.value
+  lastScrollPosition.value = currentScrollPosition
 })
-
-const scrolled = ref(false)
-function handleScroll () {
-  scrolled.value = (window.scrollY > 0)
-}
 
 let trap
 const nav = ref()
@@ -96,7 +96,7 @@ function onLeaveCancelled() {
 
 <template>
   <div class="nav-wrapper" ref="nav">
-    <nav :class="['nav', { open: menuOpen, scrolled }]">
+    <nav :class="['nav', { open: menuOpen, scrolled: y > 300, 'nav-hidden': !showNavbar }]">
       <div class="container nav-container">
         <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
           <SiteLogo />
@@ -172,8 +172,8 @@ function onLeaveCancelled() {
 <style lang="scss" scoped>
 .nav {
   position: relative;
-  transition: background-color .5s ease;
   z-index: 1200;
+  transition: all .5s ease-out;
 
   .nav-container {
     display: flex;
@@ -207,6 +207,10 @@ function onLeaveCancelled() {
 
   &.scrolled {
     background-color: var(--rose-light);
+  }
+
+  &.nav-hidden {
+    transform: translate3d(0, -100%, 0);
   }
 }
 

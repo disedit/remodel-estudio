@@ -14,7 +14,8 @@
     transition: .25s ease;
   }
 
-  .nav.open .hide {
+  .nav.open .hide,
+  .minus .hide {
     opacity: 0;
   }
 </style>

@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   media: { type: Object, required: true },
-  hover: { type: Object, required: true },
+  hover: { type: Object, default: null },
   width: { type: Number, default: null }
 })
 

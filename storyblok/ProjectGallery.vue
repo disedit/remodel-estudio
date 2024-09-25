@@ -27,7 +27,6 @@ function closeGallery () {
 }
 
 function scrollToPicture (index) {
-  console.log('scrolling to', index)
   const picture = document.getElementById(`picture-${index}`)
   picture.scrollIntoView()
   currentPicture.value = index
@@ -99,8 +98,6 @@ function scrollDown () {
 
 <style lang="scss" scoped>
 .project-gallery {
-  margin: var(--spacer-10) 0;
-
   &-picture {
     width: 100%;
     aspect-ratio: 1;
