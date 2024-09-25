@@ -35,7 +35,7 @@ const nextLink = computed(() => {
       {{ blok.title }}
     </h1>
 
-    <div class="flex flex-col gap-20">
+    <div class="flex flex-col gap-24 mb-24">
       <StoryblokComponent
         v-for="blok in blok.blocks"
         :key="blok._uid"

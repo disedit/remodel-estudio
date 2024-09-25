@@ -35,7 +35,7 @@ defineProps({ blok: Object })
   &.full-height {
     .container {
       height: 100vh;
-      padding: 10vh var(--site-padding-x);
+      padding: var(--site-padding-x);
       height: 100vh;
     }
 
