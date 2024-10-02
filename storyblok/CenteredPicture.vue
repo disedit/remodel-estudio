@@ -36,7 +36,7 @@ defineProps({ blok: Object })
     .container {
       height: 100vh;
       padding: var(--site-padding-x);
-      height: 100vh;
+      height: 100svh;
     }
 
     .centered-picture-media {
@@ -47,6 +47,17 @@ defineProps({ blok: Object })
   &.has-width {
     .centered-picture-media {
       width: var(--width);
+    }
+  }
+}
+
+@include media('<md') {
+  .centered-picture {
+    &.full-height {
+      .container {
+        height: auto;
+        padding: 0 var(--site-padding-x);
+      }
     }
   }
 }

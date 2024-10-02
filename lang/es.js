@@ -5,6 +5,7 @@ export default {
     toggle_menu: 'Toggle menu'
   },
   projects: {
+    all: 'Todos',
     next: 'Siguiente proyecto'
   },
   comparison: {

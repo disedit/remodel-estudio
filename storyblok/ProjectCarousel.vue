@@ -95,4 +95,27 @@ defineProps({ blok: Object })
     width: 100%;
   }
 }
+
+@include media('<md') {
+  .carousel {
+    &__picture {
+      height: 50vh;
+    }
+
+    &__prev,
+    &__next {
+      margin: 0;
+      --vc-nav-width: 4rem;
+      --vc-nav-height: 4rem;
+    }
+
+    &__prev {
+      left: 0;
+    }
+
+    &__next {
+      right: 0;
+    }
+  }
+}
 </style>

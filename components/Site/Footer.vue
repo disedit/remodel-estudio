@@ -1,13 +1,14 @@
 <script setup>
 const settings = useState('settings')
+const localePath = useLocalePath()
 </script>
 
 <template>
   <footer class="footer bg-rose text-white">
     <div class="container padded">
-      <div class="footer-logo">
+      <NuxtLink :to="localePath('/')" class="footer-logo">
         <SiteMark />
-      </div>
+      </NuxtLink>
       <div class="footer-socials">
         <ul>
           <li v-for="link in settings.data.story.content.footer_links" :key="link._uid">

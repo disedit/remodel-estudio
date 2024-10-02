@@ -23,6 +23,7 @@ const { data: categories } = await useAsyncData(
     version,
     language: locale.value,
     datasource: 'categories',
+    dimension: 'en'
   })
 )
 
@@ -46,7 +47,7 @@ function setCategory(category) {
           :class="{ active: selectedCategory === null }"
           @click.prevent="setCategory(null)"
         >
-          Todos
+          {{ $t('projects.all') }}
         </a>
         <a
           :href="`#${category.value}`"
@@ -55,7 +56,7 @@ function setCategory(category) {
           :class="{ active: selectedCategory === category.value }"
           @click.prevent="setCategory(category.value)"
         >
-          {{ category.value }}
+          {{ locale === 'es' ? category.value : category.dimension_value }}
         </a>
       </nav>
 
