@@ -26,6 +26,7 @@ const showingAfter = ref(false)
       <div class="before-after-controls">
         <button
           @click="showingAfter = false"
+          @mouseenter="showingAfter = false"
           :aria-controls="`before-after-${blok._uid}`"
           :aria-pressed="showingAfter ? 'false' : 'true'"
         >
@@ -34,6 +35,7 @@ const showingAfter = ref(false)
         {{ $t('comparison.and') }}
         <button
           @click="showingAfter = true"
+          @mouseenter="showingAfter = true"
           :aria-controls="`before-after-${blok._uid}`"
           :aria-pressed="showingAfter ? 'true' : 'false'"
         >
