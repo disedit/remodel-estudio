@@ -36,6 +36,10 @@ const filteredProjects = computed(() => {
 function setCategory(category) {
   selectedCategory.value = category
 }
+
+const filterQuery = computed(() => {
+  return selectedCategory.value ? '?cat=' + selectedCategory.value : ''
+})
 </script>
 
 <template>
@@ -65,7 +69,7 @@ function setCategory(category) {
           v-for="project in filteredProjects"
           :key="project.uuid"
           class="project">
-          <NuxtLink :to="internalLink(project.full_slug)">
+          <NuxtLink :to="internalLink(project.full_slug + filterQuery)">
             <NuxtImg
               :src="project.content.thumbnail.filename"
               :alt="project.content.thumbnail.alt"

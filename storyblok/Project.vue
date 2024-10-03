@@ -2,16 +2,20 @@
 const props = defineProps({ blok: Object })
 
 // Fetch next page
+const route = useRoute()
 const { internalLink } = useLinks()
-const { slug } = useRoute().params
+const { slug } = route.params
+const { cat } = route.query
 const { locale } = useI18n()
 const version = useEnvironment()
 const storyblokApi = useStoryblokApi()
+const filter_query = (cat) ? { category: { in: cat }} : null
 const { data } = await useAsyncData('nextProject', async () => await storyblokApi.get(`cdn/stories`, {
     starts_with: 'proyectos/',
     sort_by: 'sort_by_date:desc,created_at:desc',
     excluding_fields: 'blocks,thumbnail,description,title',
     is_startpage: 0,
+    filter_query,
     language: locale.value,
     version
 }))
@@ -24,8 +28,11 @@ const nextPage = computed(() => {
   return orderedPages[currentIndex + 1]
 })
 
+const filterQuery = computed(() => {
+  return cat ? '?cat=' + cat : ''
+})
 const nextLink = computed(() => {
-  return internalLink(nextPage.value.full_slug)
+  return internalLink(nextPage.value.full_slug + filterQuery.value)
 })
 </script>
 

@@ -16,7 +16,6 @@ watch(y, (currentScrollPosition) => {
   if (currentScrollPosition < 0 || Math.abs(currentScrollPosition - lastScrollPosition.value) < 60) {
     return
   }
-  console.log(currentScrollPosition)
   showNavbar.value = currentScrollPosition < lastScrollPosition.value
   lastScrollPosition.value = currentScrollPosition
 })
