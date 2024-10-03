@@ -9,27 +9,43 @@ const { cat } = route.query
 const { locale } = useI18n()
 const version = useEnvironment()
 const storyblokApi = useStoryblokApi()
-const filter_query = (cat) ? { category: { in: cat }} : null
 const { data } = await useAsyncData('nextProject', async () => await storyblokApi.get(`cdn/stories`, {
     starts_with: 'proyectos/',
     sort_by: 'sort_by_date:desc,created_at:desc',
     excluding_fields: 'blocks,thumbnail,description,title',
     is_startpage: 0,
-    filter_query,
     language: locale.value,
     version
 }))
-const orderedPages = data.value.data.stories
-const currentIndex = orderedPages.findIndex(page => slug[1] === page.slug)
+const allPages = data.value.data.stories
+const filteredPages = allPages.filter(story => {
+  if (!cat) return true
+  return story.content.category === cat
+})
+const currentIndexOnFiltered = filteredPages.findIndex(page => slug[1] === page.slug)
+const currentIndexOnAll = allPages.findIndex(page => slug[1] === page.slug)
+const lastItemOnFiltered = computed(() => currentIndexOnFiltered + 1 >= filteredPages.length)
+const lastItemOnAll = computed(() => currentIndexOnAll + 1 >= allPages.length)
 const nextPage = computed(() => {
-  if (currentIndex + 1 >= orderedPages.length) {
-    return orderedPages[0]
+  if (cat) {
+    if (lastItemOnFiltered.value && !lastItemOnAll.value) {
+      return allPages[currentIndexOnAll + 1]
+    } else if (lastItemOnFiltered.value && lastItemOnAll.value) {
+      return allPages[0]
+    } else {
+      return filteredPages[currentIndexOnFiltered + 1]
+    }
+  } else {
+    if (lastItemOnAll.value) {
+      return allPages[0]
+    } else {
+      return allPages[currentIndexOnAll + 1]
+    }
   }
-  return orderedPages[currentIndex + 1]
 })
 
 const filterQuery = computed(() => {
-  return cat ? '?cat=' + cat : ''
+  return cat && !lastItemOnFiltered.value ? '?cat=' + cat : ''
 })
 const nextLink = computed(() => {
   return internalLink(nextPage.value.full_slug + filterQuery.value)

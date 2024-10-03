@@ -11,8 +11,15 @@ const { internalLink } = useLinks()
 const { y } = useWindowScroll()
 const showNavbar = ref(true)
 const lastScrollPosition = ref(0)
+const scrolled = computed(() => y.value > 200 && showNavbar.value)
 
 watch(y, (currentScrollPosition) => {
+  if (scrolled.value || menuOpen.value) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fbecf1')
+  } else {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+
   if (currentScrollPosition < 0 || Math.abs(currentScrollPosition - lastScrollPosition.value) < 60) {
     return
   }
@@ -95,7 +102,7 @@ function onLeaveCancelled() {
 
 <template>
   <div class="nav-wrapper" ref="nav">
-    <nav :class="['nav', { open: menuOpen, scrolled: y > 300, 'nav-hidden': !showNavbar }]">
+    <nav :class="['nav', { open: menuOpen, scrolled, 'nav-hidden': !showNavbar }]">
       <div class="container nav-container">
         <NuxtLink :to="localePath('/')" class="nav-logo" :aria-label="$t('assist.logo')">
           <SiteLogo />

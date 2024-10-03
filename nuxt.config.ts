@@ -6,8 +6,8 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       meta: [
-        { name: 'theme-color', content: '#181818' },
-        { name: 'msapplication-TileColor', content: '#181818' },
+        { name: 'theme-color', content: '#fff' },
+        { name: 'msapplication-TileColor', content: '#ee817e' },
       ],
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
