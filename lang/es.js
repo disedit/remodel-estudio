@@ -12,5 +12,9 @@ export default {
     before: 'Antes',
     and: 'y',
     after: 'después'
+  },
+  footer: {
+    privacy_policy: 'Política de privacidad',
+    legal_notice: 'Aviso legal'
   }
 }

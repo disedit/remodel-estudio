@@ -1,6 +1,7 @@
 <script setup>
 const settings = useState('settings')
 const localePath = useLocalePath()
+const { internalLink } = useLinks()
 </script>
 
 <template>
@@ -23,6 +24,16 @@ const localePath = useLocalePath()
       </div>
       <div class="footer-address">
         <UtilsRichText :content="settings.data.story.content.footer_address" />
+        <p>
+          <NuxtLink :to="internalLink(settings.data.story.content.privacy_policy)">
+            {{ $t('footer.privacy_policy') }}
+          </NuxtLink>
+        </p>
+        <p>
+          <NuxtLink :to="internalLink(settings.data.story.content.legal_notice)">
+            {{ $t('footer.legal_notice') }}
+          </NuxtLink>
+        </p>
       </div>
     </div>
   </footer>
