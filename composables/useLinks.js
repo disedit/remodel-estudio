@@ -11,6 +11,9 @@ export const useLinks = () => {
       }
       if (!cachedUrl) return ''
       return cachedUrl.startsWith('/') ? cachedUrl : prefix + cachedUrl
+    },
+    target: (link) => {
+      return link.target
     }
   }
 }
