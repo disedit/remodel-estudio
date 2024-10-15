@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/google-fonts',
+    '@cheers-io/nuxt-storyblok-sitemap'
   ],
 
   vite: {
@@ -67,6 +68,11 @@ export default defineNuxtConfig({
     storyblok: {
       baseURL: 'https://a.storyblok.com'
     }
+  },
+
+  storyblokSitemap: {
+    accessToken: process.env.STORYBLOK_TOKEN,
+    baseUrl: 'https://remodelestudio.com'
   },
 
   googleFonts: {
