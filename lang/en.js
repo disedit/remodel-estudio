@@ -6,7 +6,8 @@ export default {
   },
   projects: {
     all: 'All',
-    next: 'Next project'
+    next: 'Next project',
+    prev: 'Previous project'
   },
   comparison: {
     before: 'Before',

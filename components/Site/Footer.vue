@@ -44,7 +44,7 @@ const { internalLink } = useLinks()
   .container {
     display: grid;
     grid-template-columns: 1fr auto auto;
-    padding: var(--spacer-20) var(--site-padding-x);
+    padding: var(--spacer-12) var(--site-padding-x);
     font-size: var(--text-base);
     gap: var(--spacer-20);
   }

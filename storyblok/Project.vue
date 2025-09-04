@@ -43,12 +43,32 @@ const nextPage = computed(() => {
     }
   }
 })
+const prevPage = computed(() => {
+  if (cat) {
+    if (currentIndexOnFiltered === 0 && currentIndexOnAll !== 0) {
+      return allPages[currentIndexOnAll - 1]
+    } else if (currentIndexOnFiltered === 0 && currentIndexOnAll === 0) {
+      return allPages[allPages.length - 1]
+    } else {
+      return filteredPages[currentIndexOnFiltered - 1]
+    }
+  } else {
+    if (currentIndexOnAll === 0) {
+      return allPages[allPages.length - 1]
+    } else {
+      return allPages[currentIndexOnAll - 1]
+    }
+  }
+})
 
 const filterQuery = computed(() => {
   return cat && !lastItemOnFiltered.value ? '?cat=' + cat : ''
 })
 const nextLink = computed(() => {
   return internalLink(nextPage.value.full_slug + filterQuery.value)
+})
+const prevLink = computed(() => {
+  return internalLink(prevPage.value.full_slug + filterQuery.value)
 })
 </script>
 
@@ -69,6 +89,11 @@ const nextLink = computed(() => {
     <div class="container padded grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
       <div class="project-details">
         <UtilsRichText :content="blok.details" />
+        <div class="text-base font-normal project-prev">
+          <NuxtLink :to="prevLink" class="text-black hover:underline">
+            {{ $t('projects.prev') }}
+          </NuxtLink>
+        </div>
       </div>
       <div class="project-next">
         <NuxtLink :to="nextLink" class="text-black hover:underline">
@@ -111,11 +136,17 @@ const nextLink = computed(() => {
 .project-next {
   display: flex;
   align-items: flex-end;
-  width: 100px;
+  width: 150px;
   margin-inline-start: auto;
   text-align: right;
   font-size: var(--text-base);
   line-height: 1.25;
+}
+.project-prev {
+  width: 150px;
+  font-size: var(--text-base);
+  line-height: 1.25;
+  margin-top: 3rem;
 }
 
 @include media('<sm') { 
