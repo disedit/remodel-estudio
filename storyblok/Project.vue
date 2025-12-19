@@ -89,13 +89,16 @@ const prevLink = computed(() => {
     <div class="container padded grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
       <div class="project-details">
         <UtilsRichText :content="blok.details" />
-        <div class="text-base font-normal project-prev">
+        <div class="text-base font-normal project-prev hidden md:block">
           <NuxtLink :to="prevLink" class="text-black hover:underline">
             {{ $t('projects.prev') }}
           </NuxtLink>
         </div>
       </div>
       <div class="project-next">
+        <NuxtLink :to="prevLink" class="text-black hover:underline md:hidden">
+          {{ $t('projects.prev') }}
+        </NuxtLink>
         <NuxtLink :to="nextLink" class="text-black hover:underline">
           {{ $t('projects.next') }}
         </NuxtLink>
@@ -136,6 +139,7 @@ const prevLink = computed(() => {
 .project-next {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   width: 150px;
   margin-inline-start: auto;
   text-align: right;
@@ -153,6 +157,15 @@ const prevLink = computed(() => {
   .page {
     &-title {
       display: none;
+    }
+  }
+}
+
+@include media('<md') { 
+  .project {
+    &-next {
+      width: 100%;
+      justify-content: space-between;
     }
   }
 }
